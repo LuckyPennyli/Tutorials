@@ -1,0 +1,13 @@
+install.packages("tm")
+install.packages("wordcloud")
+library(tm)
+library(wordcloud)
+patient_notes <- read.csv("patient_notes.csv")
+patient_notes<-data.frame(patient_notes)
+patient_notes_corpus<-Corpus(VectorSource(patient_notes$pn_history))
+patient_notes_clean<-tm_map(patient_notes_clean,removeNumbers)
+patient_notes_clean<-tm_map(patient_notes_clean,removeWords,stopwords("english"))
+patient_notes_Clean<-tm_map(patient_notes_clean,removePunctuation)
+patient_notes_Clean<-tm_map(patient_notes_clean,stripWhitespace)
+wordcloud(patient_notes_clean,max.words = 200,random.color = TRUE,random.order=FALSE)
+
